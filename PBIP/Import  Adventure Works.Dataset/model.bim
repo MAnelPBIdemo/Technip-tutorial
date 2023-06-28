@@ -497,6 +497,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -909,9 +913,10 @@
                 "let",
                 "    Source = Sql.Databases(\"localhost\"),",
                 "    AdventureWorksDW2016_EXT = Source{[Name=\"AdventureWorksDW2016_EXT\"]}[Data],",
-                "    dbo_DimCustomer = AdventureWorksDW2016_EXT{[Schema=\"dbo\",Item=\"DimCustomer\"]}[Data]",
+                "    dbo_DimCustomer = AdventureWorksDW2016_EXT{[Schema=\"dbo\",Item=\"DimCustomer\"]}[Data],",
+                "    #\"Filtered Rows\" = Table.SelectRows(dbo_DimCustomer, each ([GeographyKey] = 2 or [GeographyKey] = 3 or [GeographyKey] = 4))",
                 "in",
-                "    dbo_DimCustomer"
+                "    #\"Filtered Rows\""
               ],
               "type": "m"
             }
@@ -1839,9 +1844,11 @@
                 "value": "{\"currencyCulture\":\"en-US\"}"
               }
             ],
-            "expression": "SUMX( FactInternetSales, FactInternetSales[OrderQuantity] * FactInternetSales[UnitPrice])",
+
+            "expression": "sum(FactInternetSales[SalesAmount])",
             "formatString": "\\$#,0.###############;(\\$#,0.###############);\\$#,0.###############",
-            "lineageTag": "78afc799-c29e-4eb9-b3f9-50af450d2f28"
+            "lineageTag": "dc6f0836-b8b4-4624-9ccb-861c96c5e126"
+
           }
         ],
         "partitions": [
