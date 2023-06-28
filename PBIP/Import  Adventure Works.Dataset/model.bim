@@ -1844,9 +1844,11 @@
                 "value": "{\"currencyCulture\":\"en-US\"}"
               }
             ],
+
             "expression": "sum(FactInternetSales[SalesAmount])",
             "formatString": "\\$#,0.###############;(\\$#,0.###############);\\$#,0.###############",
             "lineageTag": "dc6f0836-b8b4-4624-9ccb-861c96c5e126"
+
           }
         ],
         "partitions": [
@@ -1873,10 +1875,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "changedProperties": [
@@ -1885,20 +1883,6 @@
           }
         ],
         "columns": [
-          {
-            "name": "SalesTerritoryAlternateKey",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "d757c8f4-c1ec-4da2-9027-9fd35e839dee",
-            "sourceColumn": "SalesTerritoryAlternateKey",
-            "summarizeBy": "none"
-          },
           {
             "name": "SalesTerritoryCountry",
             "annotations": [
@@ -1964,7 +1948,7 @@
                 "    Source = Sql.Databases(\"localhost\"),",
                 "    AdventureWorksDW2016_EXT = Source{[Name=\"AdventureWorksDW2016_EXT\"]}[Data],",
                 "    dbo_DimSalesTerritory = AdventureWorksDW2016_EXT{[Schema=\"dbo\",Item=\"DimSalesTerritory\"]}[Data],",
-                "    #\"Removed Columns\" = Table.RemoveColumns(dbo_DimSalesTerritory,{\"SalesTerritoryImage\"})",
+                "    #\"Removed Columns\" = Table.RemoveColumns(dbo_DimSalesTerritory,{\"SalesTerritoryImage\", \"SalesTerritoryAlternateKey\"})",
                 "in",
                 "    #\"Removed Columns\""
               ],
