@@ -1830,6 +1830,20 @@
           }
         ],
         "lineageTag": "c2107eef-6407-447d-9f39-c6b7700ab3a1",
+        "measures": [
+          {
+            "name": "Sales",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"currencyCulture\":\"en-US\"}"
+              }
+            ],
+            "expression": "SUMX( FactInternetSales, FactInternetSales[OrderQuantity] * FactInternetSales[UnitPrice])",
+            "formatString": "\\$#,0.###############;(\\$#,0.###############);\\$#,0.###############",
+            "lineageTag": "78afc799-c29e-4eb9-b3f9-50af450d2f28"
+          }
+        ],
         "partitions": [
           {
             "name": "FactInternetSales-ec798b9c-b4ec-4b4c-9cad-060d285b3c5e",
@@ -1854,10 +1868,6 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
-          },
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
           }
         ],
         "changedProperties": [
@@ -1866,20 +1876,6 @@
           }
         ],
         "columns": [
-          {
-            "name": "SalesTerritoryAlternateKey",
-            "annotations": [
-              {
-                "name": "SummarizationSetBy",
-                "value": "Automatic"
-              }
-            ],
-            "dataType": "int64",
-            "formatString": "0",
-            "lineageTag": "d757c8f4-c1ec-4da2-9027-9fd35e839dee",
-            "sourceColumn": "SalesTerritoryAlternateKey",
-            "summarizeBy": "none"
-          },
           {
             "name": "SalesTerritoryCountry",
             "annotations": [
@@ -1945,7 +1941,7 @@
                 "    Source = Sql.Databases(\"localhost\"),",
                 "    AdventureWorksDW2016_EXT = Source{[Name=\"AdventureWorksDW2016_EXT\"]}[Data],",
                 "    dbo_DimSalesTerritory = AdventureWorksDW2016_EXT{[Schema=\"dbo\",Item=\"DimSalesTerritory\"]}[Data],",
-                "    #\"Removed Columns\" = Table.RemoveColumns(dbo_DimSalesTerritory,{\"SalesTerritoryImage\"})",
+                "    #\"Removed Columns\" = Table.RemoveColumns(dbo_DimSalesTerritory,{\"SalesTerritoryImage\", \"SalesTerritoryAlternateKey\"})",
                 "in",
                 "    #\"Removed Columns\""
               ],
